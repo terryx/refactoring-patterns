@@ -46,6 +46,19 @@ Contains documented refactoring patterns with:
 
 Each refactoring pattern can be referenced when working with Claude Code to guide systematic code improvements.
 
+#### Supported Patterns
+
+- [x] [Combine Functions into Class](specs/refactorings/combine-functions-into-class.md)
+- [ ] Combine Functions into Transform
+- [x] [Extract Function](specs/refactorings/extract-function.md)
+- [x] [Extract Variable](specs/refactorings/extract-variable.md)
+- [x] [Inline Function](specs/refactorings/inline-function.md)
+- [x] [Inline Variable](specs/refactorings/inline-variable.md)
+- [x] [Rename Variable](specs/refactorings/rename-variable.md)
+- [ ] Encapsulate Variable
+- [ ] Introduce Parameter Object
+- [ ] [Replace Nested Conditional with Guard Clauses](specs/refactorings/replace-nested-conditional-with-guard-clauses.md)
+
 ### Workflow
 
 1. **Reference patterns** when requesting refactoring:
@@ -82,6 +95,7 @@ To add new refactoring patterns:
    ## Mechanics
    - [Step-by-step instructions]
    ```
+
 
 ## Reference
 

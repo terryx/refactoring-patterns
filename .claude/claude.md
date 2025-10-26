@@ -6,13 +6,6 @@
 - **Verify**: Check spec files for checkbox status before starting work
 - **Refactorings**: Apply guiding principles from specs/refactorings/*.md when restructuring code
 
-## General Principles
-- **Guard Clauses**: Handle invalid cases early and return immediately
-- **Branching**: Use switch/pattern matching/lookup tables for single discriminators
-- **CQS**: Functions either return data OR cause effects, never both
-- **External Services**: Isolate into dedicated components, separate from domain logic
-- **Redundant Variables**: Avoid variables that are immediately returned without transformation
-
 ## JavaScript
 - **Imports**: Use static ESM imports only (no dynamic `import()` or `require()`)
 - **Exports**: Use ESM exports (no CommonJS)

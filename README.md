@@ -27,14 +27,6 @@ You can integrate these refactoring patterns and guidelines into your own projec
 ### What You Get
 
 #### `.claude/CLAUDE.md`
-This file contains coding guidelines that Claude Code will follow when working on your project:
-
-- **Guard Clauses**: Early returns for invalid cases
-- **Command-Query Separation (CQS)**: Functions either query data or modify state, never both
-- **External Service Isolation**: Keep domain logic separate from external dependencies
-- **JavaScript/ESM Best Practices**: Static imports, proper exports, promise handling
-- **Git Conventions**: Conventional Commits, trunk-based development
-
 Modify this file to add your own project-specific rules, preferred libraries, or coding conventions.
 
 #### `specs/refactorings/`
@@ -61,16 +53,35 @@ Each refactoring pattern can be referenced when working with Claude Code to guid
 
 ### Workflow
 
-1. **Reference patterns** when requesting refactoring:
+#### Option 1: Using Slash Commands (Recommended)
+
+Create custom slash commands in `.claude/commands/` to apply refactoring patterns:
+
+1. **Create a refactoring command** (e.g., `.claude/commands/refactor.md`):
+   ```markdown
+   Apply refactoring patterns from specs/refactorings/ to improve code quality.
+
+   Review the code and:
+   1. Identify applicable refactoring patterns from specs/refactorings/
+   2. Apply the patterns following their mechanics
+   3. Ensure all changes follow the guidelines in .claude/CLAUDE.md
+   ```
+
+2. **Use the command**:
+   ```
+   /refactor path/to/file.js
+   ```
+
+This approach allows Claude Code to automatically select and apply the most appropriate refactoring patterns without manually choosing individual specs.
+
+#### Option 2: Direct Pattern Reference
+
+**Reference specific patterns** when you know which refactoring to apply:
    ```
    "Apply the Extract Function pattern from specs/refactorings/extract-function.md to this code"
    ```
 
-2. **Use checkboxes** in spec files to track implementation:
-   - `[ ]` - Feature to implement
-   - `[x]` - Already implemented
-
-3. **Let Claude Code guide you** through the refactoring mechanics outlined in each pattern
+---
 
 ## Adding More Patterns
 
@@ -106,4 +117,4 @@ These patterns are based on **Refactoring: Improving the Design of Existing Code
 
 ## License
 
-This guide structure is MIT licensed (see LICENSE). Please refer to the original book for detailed explanations and the complete catalog of refactoring patterns.
+This guide structure is MIT-licensed (see LICENSE). Please refer to the original book for detailed explanations and the complete catalog of refactoring patterns.

@@ -42,14 +42,19 @@ Each refactoring pattern can be referenced when working with Claude Code to guid
 
 - [x] [Combine Functions into Class](specs/refactorings/combine-functions-into-class.md)
 - [ ] Combine Functions into Transform
+- [x] [Extract Class](specs/refactorings/extract-class.md)
 - [x] [Extract Function](specs/refactorings/extract-function.md)
 - [x] [Extract Variable](specs/refactorings/extract-variable.md)
 - [x] [Inline Function](specs/refactorings/inline-function.md)
 - [x] [Inline Variable](specs/refactorings/inline-variable.md)
 - [x] [Rename Variable](specs/refactorings/rename-variable.md)
+- [x] [Replace Conditional with Polymorphism](specs/refactorings/replace-conditional-with-polymorphism.md)
 - [ ] Encapsulate Variable
 - [ ] Introduce Parameter Object
-- [ ] [Replace Nested Conditional with Guard Clauses](specs/refactorings/replace-nested-conditional-with-guard-clauses.md)
+- [x] [Replace Nested Conditional with Guard Clauses](specs/refactorings/replace-nested-conditional-with-guard-clauses.md)
+- [x] [Replace Primitive with Object](specs/refactorings/replace-primitive-with-object.md)
+- [x] [Replace Temp with Query](specs/refactorings/replace-temp-with-query.md)
+- [x] [Substitute Algorithm](specs/refactorings/substitute-algorithm.md)
 
 ### Workflow
 

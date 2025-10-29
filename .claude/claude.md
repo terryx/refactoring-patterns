@@ -19,9 +19,12 @@ Apply these when the conditions are met (refer to `specs/refactorings/` for deta
 - **Extract Variable**: When expressions are complex or used multiple times
 - **Inline Variable**: When the variable name doesn't communicate more than the expression itself
 - **Combine Functions into Class**: When multiple functions operate on the same data structure
+- **Replace Inline Code with Function Call**: When inline code duplicates behavior available in an existing function
 - **Replace Primitive with Object**: When a primitive value needs validation, behavior, or is duplicated across the codebase
 - **Replace Temp with Query**: When breaking up large functions or when the same calculation appears in multiple places
 - **Extract Class**: When a class has multiple responsibilities or subsets of data that change together
+- **Hide Delegate**: When a client is accessing a delegate object through a server, exposing unnecessary coupling
+- **Remove Middle Man**: When a class has too many simple delegating methods that just forward to another class
 - **Replace Conditional with Polymorphism**: When you have switch statements on type codes that appear in multiple functions
 
 ## JavaScript

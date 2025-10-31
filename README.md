@@ -12,29 +12,15 @@ You can integrate these refactoring patterns and guidelines into your own projec
 
 ### Quick Setup
 
-1. **Copy the `.claude` directory** to your project root:
+**Copy the `.claude` directory** to your project root:
    ```bash
    cp -r .claude /path/to/your/project/
    ```
-
-2. **Copy the `specs` directory** to your project root:
-   ```bash
-   cp -r specs /path/to/your/project/
-   ```
-
-3. **Customize the guidelines** in `.claude/CLAUDE.md` to match your project's coding standards
 
 ### What You Get
 
 #### `.claude/CLAUDE.md`
 Modify this file to add your own project-specific rules, preferred libraries, or coding conventions.
-
-#### `specs/refactorings/`
-Contains documented refactoring patterns with:
-
-- Before/after code examples
-- Motivation for applying the refactoring
-- Step-by-step mechanics
 
 Each refactoring pattern can be referenced when working with Claude Code to guide systematic code improvements.
 
@@ -51,70 +37,15 @@ Each refactoring pattern can be referenced when working with Claude Code to guid
 - [x] [Rename Variable](specs/refactorings/rename-variable.md)
 - [x] [Remove Middle Man](specs/refactorings/remove-middle-man.md)
 - [x] [Replace Conditional with Polymorphism](specs/refactorings/replace-conditional-with-polymorphism.md)
+- [x] [Replace Error Code with Exception](specs/refactorings/replace-error-code-with-exception.md)
 - [ ] Encapsulate Variable
 - [ ] Introduce Parameter Object
 - [x] [Replace Inline Code with Function Call](specs/refactorings/replace-inline-code-with-function-call.md)
+- [x] [Replace Magic Literal](specs/refactorings/replace-magic-literal.md)
 - [x] [Replace Nested Conditional with Guard Clauses](specs/refactorings/replace-nested-conditional-with-guard-clauses.md)
 - [x] [Replace Primitive with Object](specs/refactorings/replace-primitive-with-object.md)
 - [x] [Replace Temp with Query](specs/refactorings/replace-temp-with-query.md)
 - [x] [Substitute Algorithm](specs/refactorings/substitute-algorithm.md)
-
-### Workflow
-
-#### Option 1: Using Slash Commands (Recommended)
-
-Create custom slash commands in `.claude/commands/` to apply refactoring patterns:
-
-1. **Create a refactoring command** (e.g., `.claude/commands/refactor.md`):
-   ```markdown
-   Apply refactoring patterns from specs/refactorings/ to improve code quality.
-
-   Review the code and:
-   1. Identify applicable refactoring patterns from specs/refactorings/
-   2. Apply the patterns following their mechanics
-   3. Ensure all changes follow the guidelines in .claude/CLAUDE.md
-   ```
-
-2. **Use the command**:
-   ```
-   /refactor path/to/file.js
-   ```
-
-This approach allows Claude Code to automatically select and apply the most appropriate refactoring patterns without manually choosing individual specs.
-
-#### Option 2: Direct Pattern Reference
-
-**Reference specific patterns** when you know which refactoring to apply:
-   ```
-   "Apply the Extract Function pattern from specs/refactorings/extract-function.md to this code"
-   ```
-
----
-
-## Adding More Patterns
-
-To add new refactoring patterns:
-
-1. Create a new file in `specs/refactorings/[pattern-name].md`
-2. Follow this structure:
-   ```markdown
-   # Pattern Name
-
-   ```[language]
-   // before
-   [example code]
-
-   // after
-   [refactored code]
-   ```
-
-   ## Motivation
-   [Why apply this refactoring]
-
-   ## Mechanics
-   - [Step-by-step instructions]
-   ```
-
 
 ## Reference
 

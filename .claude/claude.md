@@ -12,12 +12,13 @@
 - **Simplicity**: Prefer simpler, more readable algorithms over complex ones
 
 ## Situational Principles
-Apply these when the conditions are met (refer to `specs/refactorings/` for detailed mechanics):
+Apply these when the conditions are met:
 
 - **Extract Function**: When you need to spend effort understanding what a code fragment does
 - **Inline Function**: When the function body is as clear as the function name (excessive indirection)
 - **Extract Variable**: When expressions are complex or used multiple times
 - **Inline Variable**: When the variable name doesn't communicate more than the expression itself
+- **Replace Magic Literal**: When a literal value has special meaning that isn't immediately obvious, or when the same literal appears in multiple places
 - **Combine Functions into Class**: When multiple functions operate on the same data structure
 - **Replace Inline Code with Function Call**: When inline code duplicates behavior available in an existing function
 - **Replace Primitive with Object**: When a primitive value needs validation, behavior, or is duplicated across the codebase
@@ -26,6 +27,7 @@ Apply these when the conditions are met (refer to `specs/refactorings/` for deta
 - **Hide Delegate**: When a client is accessing a delegate object through a server, exposing unnecessary coupling
 - **Remove Middle Man**: When a class has too many simple delegating methods that just forward to another class
 - **Replace Conditional with Polymorphism**: When you have switch statements on type codes that appear in multiple functions
+- **Replace Error Code with Exception**: When error codes clutter the normal execution path and errors should interrupt normal flow (use for truly exceptional conditions only)
 
 ## JavaScript
 - **Imports**: Use static ESM imports only (no dynamic `import()` or `require()`)

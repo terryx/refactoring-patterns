@@ -13,7 +13,7 @@ Apply all principles from the start—never write code that needs immediate refa
 - **Decompose Conditional**: Extract complex conditional logic into well-named functions that clearly communicate intent
 - **Encapsulate Collection**: Provide methods to add/remove items instead of exposing the collection directly—return copies, not references
 - **Guard Clauses**: Handle edge cases early with immediate returns to reduce nesting
-- **Remove Dead Code**: Delete any code that is never executed or used
+- **Remove Dead Code**: Delete any code that is never executed or used. If code has no actual usage (only tested but not used in production), remove the test first, then remove the code
 - **Remove Flag Argument**: Replace boolean parameters with explicit function calls that clearly state intent
 - **Replace Inline Code with Function Call**: Always use existing functions instead of duplicating their logic inline
 - **Replace Loop with Pipeline**: Transform imperative loops into declarative pipeline operations to quickly see what elements are included and how they're transformed

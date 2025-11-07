@@ -51,4 +51,6 @@ cp .env.example .env
 npm run test:gemini
 ```
 
-See [demo.mov](demo.mov) for a visual walkthrough of how the LLM evaluates code against the guidelines.
+![Demo of LLM evaluation](demo.gif)
+
+*Visual walkthrough of how the LLM evaluates code against the guidelines*

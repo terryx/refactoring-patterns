@@ -22,10 +22,10 @@ Apply all principles from the start—never write code that needs immediate refa
 ## Situational Principles
 - **Combine Functions into Class**: When multiple functions operate on the same data structure
 - **Extract Class**: When a class has multiple responsibilities or subsets of data that change together
-- **Extract Function**: When you need to spend effort understanding what a code fragment does
+- **Extract Function**: When code is 3+ lines, contains business logic, or would need a comment to explain—not for trivial wrappers
 - **Extract Variable**: When expressions are complex or used multiple times
 - **Hide Delegate**: When a client is accessing a delegate object through a server, exposing unnecessary coupling
-- **Inline Function**: When the function body is as clear as the function name (excessive indirection)
+- **Inline Function**: When the function is 1-2 lines of obvious code with no business logic (e.g., `return value === null`)
 - **Inline Variable**: When the variable name doesn't communicate more than the expression itself
 - **Introduce Special Case**: When many users of a data structure check for a specific value and most do the same thing
 - **Preserve Whole Object**: When you're passing multiple values from the same object as parameters

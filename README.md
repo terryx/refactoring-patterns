@@ -1,59 +1,54 @@
 # Refactoring Patterns Guide
 
-A collection of refactoring patterns and coding guidelines designed to work with Claude Code for improved code quality and maintainability.
+A collection of refactoring patterns and coding guidelines designed to work with AI coding assistants (Claude Code, Cursor) for improved code quality and maintainability.
 
-## About
+## Quick Setup
 
-This repository contains refactoring patterns and code guidelines based on [**Refactoring: Improving the Design of Existing Code** by Martin Fowler](https://martinfowler.com/books/refactoring.html). The patterns are structured to work seamlessly with Claude Code for automated refactoring assistance.
+Copy the guidelines into your project:
 
-## Using This Guide in Your Project
+**For Claude Code users:**
+```bash
+mkdir -p /path/to/your/project/.claude
+cp .claude/claude.md /path/to/your/project/.claude/
+```
 
-You can integrate these refactoring patterns and guidelines into your own projects by copying the relevant files:
+**For Cursor users:**
+```bash
+mkdir -p /path/to/your/project/.cursorrules
+cp .claude/claude.md /path/to/your/project/.cursorrules/
+```
 
-### Quick Setup
+Then enable the file in Cursor:
+1. Open Cursor Settings (Cmd/Ctrl + ,)
+2. Search for "Rules for AI"
+3. Enable the `claude.md` file you copied
 
-**Copy the `.claude` directory** to your project root:
-   ```bash
-   cp -r .claude /path/to/your/project/
-   ```
+You can modify these files to add your own project-specific rules, preferred libraries, or coding conventions.
 
-### What You Get
+## Supported Patterns
 
-#### `.claude/CLAUDE.md`
-Modify this file to add your own project-specific rules, preferred libraries, or coding conventions.
+See the [Supported Patterns](docs/supported-patterns.md) document for a complete list of refactoring patterns organized by type (General Principles and Situational Principles).
 
-Each refactoring pattern can be referenced when working with Claude Code to guide systematic code improvements.
+## Rubric Testing with LLM
 
-#### Supported Patterns
+This project includes automated tests that use LLMs to evaluate code quality against refactoring guidelines. The tests compare bad examples, good examples, and candidate code to assess whether refactoring principles are properly applied.
 
-- [x] [Combine Functions into Class](specs/refactorings/combine-functions-into-class.md)
-- [ ] Combine Functions into Transform
-- [x] [Extract Class](specs/refactorings/extract-class.md)
-- [x] [Extract Function](specs/refactorings/extract-function.md)
-- [x] [Extract Variable](specs/refactorings/extract-variable.md)
-- [x] [Hide Delegate](specs/refactorings/hide-delegate.md)
-- [x] [Inline Function](specs/refactorings/inline-function.md)
-- [x] [Inline Variable](specs/refactorings/inline-variable.md)
-- [x] [Rename Variable](specs/refactorings/rename-variable.md)
-- [x] [Remove Middle Man](specs/refactorings/remove-middle-man.md)
-- [x] [Replace Conditional with Polymorphism](specs/refactorings/replace-conditional-with-polymorphism.md)
-- [x] [Replace Error Code with Exception](specs/refactorings/replace-error-code-with-exception.md)
-- [ ] Encapsulate Variable
-- [ ] Introduce Parameter Object
-- [x] [Replace Inline Code with Function Call](specs/refactorings/replace-inline-code-with-function-call.md)
-- [x] [Replace Magic Literal](specs/refactorings/replace-magic-literal.md)
-- [x] [Replace Nested Conditional with Guard Clauses](specs/refactorings/replace-nested-conditional-with-guard-clauses.md)
-- [x] [Replace Primitive with Object](specs/refactorings/replace-primitive-with-object.md)
-- [x] [Replace Temp with Query](specs/refactorings/replace-temp-with-query.md)
-- [x] [Substitute Algorithm](specs/refactorings/substitute-algorithm.md)
+**How it works:**
+- Each refactoring pattern has before/after examples
+- Tests send these examples to an LLM (Gemini) along with candidate code
+- The LLM evaluates and scores the code based on the rubric
+- Responses include a score (0-1), reasoning, and refactored code
 
-## Reference
+**Running the tests:**
+```bash
+# Copy the example env file and add your API key
+cp .env.example .env
 
-These patterns are based on **Refactoring: Improving the Design of Existing Code (2nd Edition)** by Martin Fowler.
+# Add your Gemini API key to .env
+# GEMINI_API_KEY=your_key_here
 
-- Book: https://martinfowler.com/books/refactoring.html
-- Catalog: https://refactoring.com/catalog/
+# Run the rubric tests
+npm run test:gemini
+```
 
-## License
-
-This guide structure is MIT-licensed (see LICENSE). Please refer to the original book for detailed explanations and the complete catalog of refactoring patterns.
+See [demo.mov](demo.mov) for a visual walkthrough of how the LLM evaluates code against the guidelines.

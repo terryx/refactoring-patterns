@@ -18,10 +18,9 @@ mkdir -p /path/to/your/project/.cursorrules
 cp .claude/claude.md /path/to/your/project/.cursorrules/
 ```
 
-Then enable the file in Cursor:
-1. Open Cursor Settings (Cmd/Ctrl + ,)
-2. Search for "Rules for AI"
-3. Enable the `claude.md` file you copied
+Then enable the file in Cursor Settings:
+
+![Cursor Settings](cursor-settings.png)
 
 You can modify these files to add your own project-specific rules, preferred libraries, or coding conventions.
 

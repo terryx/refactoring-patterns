@@ -13,7 +13,7 @@ Apply all principles from the start—never write code that needs immediate refa
 - **Decompose Conditional**: Extract complex conditional logic into well-named functions that clearly communicate intent
 - **Encapsulate Collection**: Provide methods to add/remove items instead of exposing the collection directly—return copies, not references
 - **Guard Clauses**: Handle edge cases early with immediate returns to reduce nesting
-- **Remove Dead Code**: Delete any code that is never executed or used. If code has no actual usage (only tested but not used in production), remove the test first, then remove the code
+- **Remove Dead Code**: After refactoring a file, check all exports are used in production code (not just tests)—for unused exports, delete tests first then delete the code
 - **Remove Flag Argument**: Replace boolean parameters with explicit function calls that clearly state intent
 - **Replace Inline Code with Function Call**: Always use existing functions instead of duplicating their logic inline
 - **Replace Loop with Pipeline**: Transform imperative loops into declarative pipeline operations to quickly see what elements are included and how they're transformed
@@ -23,13 +23,13 @@ Apply all principles from the start—never write code that needs immediate refa
 - **Combine Functions into Class**: When multiple functions operate on the same data structure
 - **Extract Class**: When a class has multiple responsibilities or subsets of data that change together
 - **Extract Function**: When code is 3+ lines, contains business logic, or would need a comment to explain—not for trivial wrappers
-- **Extract Variable**: When expressions are complex or used multiple times
+- **Extract Variable**: When expressions are complex or used multiple times—ensure the name accurately describes the value in all cases
 - **Hide Delegate**: When a client is accessing a delegate object through a server, exposing unnecessary coupling
-- **Inline Function**: When the function is 1-2 lines of obvious code with no business logic (e.g., `return value === null`)
-- **Inline Variable**: When the variable name doesn't communicate more than the expression itself
+- **Inline Function**: When the function is 1-2 lines performing only primitive operations (checks, operators, constructors) without conditional branching—use well-named variables instead
+- **Inline Variable**: When a variable is used only once and its name adds no clarity beyond the expression—write the expression directly
 - **Introduce Special Case**: When many users of a data structure check for a specific value and most do the same thing
 - **Preserve Whole Object**: When you're passing multiple values from the same object as parameters
-- **Remove Middle Man**: When a class has too many simple delegating methods that just forward to another class
+- **Remove Middle Man**: When a method only forwards calls to another object without adding value—inline the delegate call at the call site
 - **Replace Primitive with Object**: When a primitive value needs validation, behavior, or the same validation appears in multiple places
 - **Replace Temp with Query**: When breaking up large functions or when the same calculation appears in multiple places
 - **Rename Variable**: When a variable name doesn't clearly communicate its purpose or intent

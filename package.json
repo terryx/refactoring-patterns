@@ -1,16 +1,16 @@
 {
-  "name": "refactoring-patterns",
-  "version": "1.0.0",
-  "type": "module",
-  "scripts": {
-    "test": "vitest",
-    "test:gemini": "node --env-file=.env node_modules/vitest/vitest.mjs test/gemini"
-  },
-  "devDependencies": {
-    "prettier": "^3.6.2",
-    "vitest": "^4.0.6"
-  },
-  "dependencies": {
-    "@google/generative-ai": "^0.24.1"
-  }
+    "name": "refactoring-patterns",
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "test:e2e": "node --env-file=.env node_modules/vitest/vitest.mjs test/gemini/e2e.test.js",
+        "test:gemini": "node --env-file=.env node_modules/vitest/vitest.mjs test/gemini"
+    },
+    "devDependencies": {
+        "prettier": "^3.6.2",
+        "vitest": "^4.0.6"
+    },
+    "dependencies": {
+        "@google/generative-ai": "^0.24.1"
+    }
 }

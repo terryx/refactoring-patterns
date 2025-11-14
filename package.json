@@ -4,7 +4,7 @@
     "type": "module",
     "scripts": {
         "test:e2e": "node --env-file=.env node_modules/vitest/vitest.mjs test/gemini/e2e.test.js",
-        "test:gemini": "node --env-file=.env node_modules/vitest/vitest.mjs test/gemini"
+        "test:guard-clause": "node --env-file=.env node_modules/vitest/vitest.mjs test/gemini/guard-clauses.test.js --watch=false"
     },
     "devDependencies": {
         "prettier": "^3.6.2",

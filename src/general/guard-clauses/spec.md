@@ -2,7 +2,10 @@
 
 ## Guideline
 
-- **Guard Clauses**: Handle edge cases early with immediate returns to reduce nesting
+- **Guard Clauses**
+    - Use guard clauses in the same top-to-bottom order as the original code.
+    - Include negations of earlier conditions to preserve logic when conditions overlap.
+    - Do not reorder checks unless mutual exclusivity is guaranteed in the original code.
 
 ## Example 1: Payment Calculation with Status Checks
 
@@ -28,9 +31,9 @@ function getPayAmount(employee) {
 
 // After
 function getPayAmount(employee) {
-  if (employee.isDead) return { amount: 0, reason: 'deceased' };
   if (employee.isSeparated) return { amount: 0, reason: 'separated' };
   if (employee.isRetired) return { amount: 0, reason: 'retired' };
+  if (employee.isDead) return { amount: 0, reason: 'deceased' };
 
   return calculateNormalPay(employee);
 }

@@ -30,7 +30,7 @@ Patterns to apply when specific conditions are met:
 - [x] [Replace Primitive with Object](../src/situational/replace-primitive-with-object/spec.md)
 - [x] [Replace Temp with Query](../src/situational/replace-temp-with-query/spec.md)
 - [x] [Replace Command with Function](../src/situational/replace-command-with-function/spec.md)
-- [x] [Replace Conditional with Polymorphism](../src/situational/replace-conditional-with-polymorphism/spec.md)
+- [x] [Strategy Pattern](../src/situational/strategy/spec.md)
 - [x] [Replace Constructor with Factory Function](../src/situational/replace-constructor-with-factory-function/spec.md)
 - [x] [Replace Error Code with Exception](../src/situational/replace-error-code-with-exception/spec.md)
 - [x] [Replace Function with Command](../src/situational/replace-function-with-command/spec.md)

@@ -12,8 +12,11 @@ Apply all principles from the start—never write code that needs immediate refa
 - **Consolidate Conditional Expression**: Combine multiple conditionals that produce the same result into a single expression with clear naming
 - **Decompose Conditional**: Extract complex conditional logic into well-named functions that clearly communicate intent
 - **Encapsulate Collection**: Provide methods to add/remove items instead of exposing the collection directly—return copies, not references
-- **Guard Clauses**: Handle edge cases early with immediate returns to reduce nesting
-- **Remove Dead Code**: After refactoring a file, check all exports are used in production code (not just tests)—for unused exports, delete tests first then delete the code
+- **Guard Clauses**
+    - Use guard clauses in the same top-to-bottom order as the original code.
+    - Include negations of earlier conditions to preserve logic when conditions overlap.
+    - Do not reorder checks unless mutual exclusivity is guaranteed in the original code.
+- **Remove Dead Code**: After refactoring a file, remove all unused code including variables, functions, constants, and exports. For unused exports that have tests, delete the tests first then delete the export. For internal unused code (variables, functions, constants), delete it immediately
 - **Remove Flag Argument**: Replace boolean parameters with explicit function calls that clearly state intent
 - **Replace Inline Code with Function Call**: Always use existing functions instead of duplicating their logic inline
 - **Replace Loop with Pipeline**: Transform imperative loops into declarative pipeline operations to quickly see what elements are included and how they're transformed
@@ -34,7 +37,7 @@ Apply all principles from the start—never write code that needs immediate refa
 - **Replace Temp with Query**: When breaking up large functions or when the same calculation appears in multiple places
 - **Rename Variable**: When a variable name doesn't clearly communicate its purpose or intent
 - **Replace Command with Function**: When a command object provides no significant benefit over a simple function
-- **Replace Conditional with Polymorphism**: When you have switch statements on type codes that appear in multiple functions
+- **Strategy Pattern**: When you have different algorithms or behaviors that need to be interchangeable, and you want to encapsulate each one independently
 - **Replace Constructor with Factory Function**: When constructors have limitations (fixed naming, type constraints, or require special operators) that prevent clear expression of intent or flexible object creation
 - **Replace Error Code with Exception**: When error handling with return codes obscures the normal flow of logic or when errors need to propagate up the call stack
 - **Replace Function with Command**: When a function needs additional operations like undo, queuing, lifecycle management, or complex parameterization that simple functions cannot provide
@@ -48,6 +51,7 @@ Apply these when the conditions are met (both when writing new code AND when ref
 - **Exports**: Use ESM exports (no CommonJS)
 - **Exceptions**: Never throw exceptions that are caught locally—use control flow instead
 - **Promise Chains**: Prefer `.then().catch()` over defining and immediately calling async functions
+- **Top-level Promises**: Use `void` operator for top-level function calls that return promises with complete internal error handling
 - **Code Formatting**: Follow Prettier or ESLint configurations defined in the project if they exist
 
 ## Documentation and Comments

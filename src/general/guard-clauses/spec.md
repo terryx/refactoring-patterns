@@ -1,11 +1,6 @@
 # Guard Clauses
 
-## Guideline
-
-- **Guard Clauses**
-    - Use guard clauses in the same top-to-bottom order as the original code.
-    - Include negations of earlier conditions to preserve logic when conditions overlap.
-    - Do not reorder checks unless mutual exclusivity is guaranteed in the original code.
+> **Note**: This guideline is sourced from `.claude/claude.md`. The source file is the authoritative reference.
 
 ## Example 1: Payment Calculation with Status Checks
 
@@ -36,97 +31,6 @@ function getPayAmount(employee) {
   if (employee.isDead) return { amount: 0, reason: 'deceased' };
 
   return calculateNormalPay(employee);
-}
-```
-
-## Example 2: Data Processing with Validation
-
-```javascript
-// Before
-function processUserData(userData) {
-  let result;
-  if (userData) {
-    if (userData.id) {
-      if (userData.email) {
-        if (validateEmail(userData.email)) {
-          result = {
-            id: userData.id,
-            email: normalizeEmail(userData.email),
-            name: userData.name || 'Unknown'
-          };
-        } else {
-          result = { error: 'Invalid email format' };
-        }
-      } else {
-        result = { error: 'Email is required' };
-      }
-    } else {
-      result = { error: 'User ID is required' };
-    }
-  } else {
-    result = { error: 'User data is required' };
-  }
-  return result;
-}
-
-// After
-function processUserData(userData) {
-  if (!userData) return { error: 'User data is required' };
-  if (!userData.id) return { error: 'User ID is required' };
-  if (!userData.email) return { error: 'Email is required' };
-  if (!validateEmail(userData.email)) return { error: 'Invalid email format' };
-
-  return {
-    id: userData.id,
-    email: normalizeEmail(userData.email),
-    name: userData.name || 'Unknown'
-  };
-}
-```
-
-## Example 3: Configuration Validation
-
-```javascript
-// Before
-function initializeService(config) {
-  let service;
-  if (config.apiKey) {
-    if (config.endpoint) {
-      if (config.timeout > 0) {
-        service = {
-          apiKey: config.apiKey,
-          endpoint: config.endpoint,
-          timeout: config.timeout,
-          status: 'initialized'
-        };
-        service.client = createClient(service);
-      } else {
-        throw new Error('Timeout must be positive');
-      }
-    } else {
-      throw new Error('Endpoint is required');
-    }
-  } else {
-    throw new Error('API key is required');
-  }
-  return service;
-}
-
-// After
-function initializeService(config) {
-  if (!config.apiKey) throw new Error('API key is required');
-  if (!config.endpoint) throw new Error('Endpoint is required');
-  if (config.timeout <= 0) throw new Error('Timeout must be positive');
-
-  const service = {
-    apiKey: config.apiKey,
-    endpoint: config.endpoint,
-    timeout: config.timeout,
-    status: 'initialized'
-  };
-  service.client = createClient(service);
-
-  return service;
 }
 ```
 

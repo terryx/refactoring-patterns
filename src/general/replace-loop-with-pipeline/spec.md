@@ -1,8 +1,6 @@
 # Replace Loop with Pipeline
 
-## Guideline
-
-- **Replace Loop with Pipeline**: Transform imperative loops into declarative pipeline operations to quickly see what elements are included and how they're transformed
+> **Note**: This guideline is sourced from `.claude/claude.md`. The source file is the authoritative reference.
 
 ## Example
 

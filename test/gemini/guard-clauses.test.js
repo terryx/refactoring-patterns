@@ -3,6 +3,7 @@ import { readFileSync } from 'fs'
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
 import { model } from './client.js'
+import { extractGuideline } from './utils/extract-guideline.js'
 import {
     example1Before,
     example1After,
@@ -16,12 +17,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 const rubricTemplate = readFileSync(join(__dirname, '../../docs/rubric.md'), 'utf-8')
-const guideline = `
-- **Guard Clauses**
-    - Use guard clauses in the same top-to-bottom order as the original code.
-    - Include negations of earlier conditions to preserve logic when conditions overlap.
-    - Do not reorder checks unless mutual exclusivity is guaranteed in the original code.
-`
+const guideline = extractGuideline('Guard Clauses')
 
 const MIN_SCORE = 0.95
 

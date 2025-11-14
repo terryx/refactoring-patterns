@@ -4,7 +4,7 @@
 Apply all principles from the start—never write code that needs immediate refactoring:
 
 - **Before writing**: Consider which patterns apply to the task
-- **While writing**: Apply Extract Function, Extract Variable, Guard Clauses, etc. as you go
+- **While writing**: Apply Extract Function, Extract Variable, Guard Clauses, Replace Loop with Pipeline, etc. as you go
 - **After writing**: Review against General and Situational Principles below
 - **Never**: Write "quick and dirty" code first with plans to refactor later
 
@@ -19,7 +19,7 @@ Apply all principles from the start—never write code that needs immediate refa
 - **Remove Dead Code**: After refactoring a file, remove all unused code including variables, functions, constants, and exports. For unused exports that have tests, delete the tests first then delete the export. For internal unused code (variables, functions, constants), delete it immediately
 - **Remove Flag Argument**: Replace boolean parameters with explicit function calls that clearly state intent
 - **Replace Inline Code with Function Call**: Always use existing functions instead of duplicating their logic inline
-- **Replace Loop with Pipeline**: Transform imperative loops into declarative pipeline operations to quickly see what elements are included and how they're transformed
+- **Replace Loop with Pipeline**: Use declarative pipeline operations (filter, map, reduce, etc.) instead of imperative loops when processing collections. Transform existing loops into pipelines during refactoring.
 - **Split Variable**: Give each variable one clear purpose—never reuse variable names for different concepts
 
 ## Situational Principles

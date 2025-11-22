@@ -22,72 +22,80 @@ export async function searchUserIssues(
         throw new Error('status_category must be a non-empty string')
     }
 
-    function buildJqlQuery() {
-        const assigneeConditions = atlassianIds.map(id => `assignee = "${id}"`).join(' OR ')
-        return `(${assigneeConditions}) AND statusCategory = "${statusCategory}" AND statusCategoryChangedDate >= "${startDate}" AND statusCategoryChangedDate <= "${endDate}"`
-    }
+    const assigneeConditions = atlassianIds.map(id => `assignee = "${id}"`).join(' OR ')
 
-    return searchIssues(buildJqlQuery(), { maxResults })
+    const jql = `(${assigneeConditions}) AND statusCategory = "${statusCategory}" AND statusCategoryChangedDate >= "${startDate}" AND statusCategoryChangedDate <= "${endDate}"`
+
+    return searchIssues(jql, { maxResults })
+}
+
+function formatReportName(teamName, date) {
+    const formattedDate = format(new Date(date), 'dd MMM yyyy')
+    return `${teamName} ${formattedDate}`
 }
 
 /**
  * @param {string} params.startDate - YYYY-MM-DD format
  * @param {string} params.endDate - YYYY-MM-DD format
- * @param {Array<string>} params.statusCategories - Must be a non-empty array
  */
 export async function addReport({ teamId, startDate, endDate, statusCategories }) {
-    if (!teamId) {
-        throw new Error('teamId is required')
+    async function validateReportParams() {
+        if (!teamId) {
+            throw new Error('teamId is required')
+        }
+
+        if (!startDate || !endDate) {
+            throw new Error('startDate and endDate are required')
+        }
+
+        if (!Array.isArray(statusCategories) || statusCategories.length === 0) {
+            throw new Error('statusCategories must be a non-empty array')
+        }
+
+        const team = await findTeamById(teamId)
+        if (!team) {
+            throw new Error(`Team not found: ${teamId}`)
+        }
+
+        if (!team.users || team.users.length === 0) {
+            throw new Error('Team has no users')
+        }
+
+        return team
     }
 
-    if (!startDate || !endDate) {
-        throw new Error('startDate and endDate are required')
+    async function buildReportData(team) {
+        const atlassianIds = team.users.map(user => user.accountId)
+
+        const reportData = {
+            teamId,
+            teamName: team.name,
+            startDate,
+            endDate,
+            statusCategories,
+            createdAt: Date.now(),
+            issues: {}
+        }
+
+        for (const statusCategory of statusCategories) {
+            const issues = await searchUserIssues(
+                atlassianIds,
+                statusCategory,
+                startDate,
+                endDate
+            )
+            reportData.issues[statusCategory] = issues
+        }
+
+        return reportData
     }
 
-    if (!Array.isArray(statusCategories) || statusCategories.length === 0) {
-        throw new Error('statusCategories must be a non-empty array')
-    }
+    const team = await validateReportParams()
+    const reportData = await buildReportData(team)
 
-    const team = await findTeamById(teamId)
-    if (!team) {
-        throw new Error(`Team not found: ${teamId}`)
-    }
+    const savedReport = createReport(formatReportName(team.name, reportData.createdAt), reportData)
 
-    if (!team.users || team.users.length === 0) {
-        throw new Error('Team has no users')
-    }
-
-    function formatReportName(teamName, date) {
-        const formattedDate = format(new Date(date), 'dd MMM yyyy')
-        return `${teamName} ${formattedDate}`
-    }
-
-    const atlassianIds = team.users.map(user => user.accountId)
-
-    const issuesByCategory = await Promise.all(
-        statusCategories.map(statusCategory =>
-            searchUserIssues(atlassianIds, statusCategory, startDate, endDate)
-                .then(issues => ({ statusCategory, issues }))
-        )
-    )
-
-    const issues = Object.fromEntries(
-        issuesByCategory.map(({ statusCategory, issues }) => [statusCategory, issues])
-    )
-
-    const reportData = {
-        teamId,
-        teamName: team.name,
-        startDate,
-        endDate,
-        statusCategories,
-        createdAt: Date.now(),
-        issues
-    }
-
-    const reportName = formatReportName(team.name, reportData.createdAt)
-    const savedReport = createReport(reportName, reportData)
-    const totalIssueCount = Object.values(reportData.issues).reduce(
+    const issueCount = Object.values(reportData.issues).reduce(
         (sum, issues) => sum + issues.length,
         0
     )
@@ -99,7 +107,7 @@ export async function addReport({ teamId, startDate, endDate, statusCategories }
             reportId: savedReport.id,
             reportName: savedReport.name,
             teamId,
-            issueCount: totalIssueCount
+            issueCount
         }
     }
 }

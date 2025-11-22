@@ -8,12 +8,12 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 const rubricTemplate = readFileSync(join(__dirname, '../../docs/rubric.md'), 'utf-8')
-const guideline = readFileSync(join(__dirname, '../../docs/guideline.md'), 'utf-8')
+const guideline = readFileSync(join(__dirname, '../../docs/rubric.md'), 'utf-8')
 
 describe('E2E Refactoring Tests', () => {
-    it('should evaluate AlphaVantageClient refactoring with extracted functions', async () => {
-        const badCode = readFileSync(join(__dirname, '../fixture/good-example1.js'), 'utf-8')
-        const goodCode = readFileSync(join(__dirname, '../fixture/bad-example1.js'), 'utf-8')
+    it('should evaluate Bad Example and Good Example with extracted functions', async () => {
+        const badCode = readFileSync(join(__dirname, '../fixture/good-example2.js'), 'utf-8')
+        const goodCode = readFileSync(join(__dirname, '../fixture/bad-example2.js'), 'utf-8')
 
         const prompt = rubricTemplate
             .replace('{GUIDELINE}', guideline)
